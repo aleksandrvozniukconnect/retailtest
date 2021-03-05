@@ -1,0 +1,86 @@
+<?xml type="text\html" version="1.0" encoding="UTF-8"?>
+<yml_catalog date="2021-03-05 16:20"><shop>
+   <name>unmere</name>
+   <company>unmere</company>
+   <currencies>
+      <currency id="USD" rate="1"/>
+   </currencies>
+   <categories>
+      <category id="547085788672">SHOPMEN</category>
+      <category id="419413638852">SHOPWOMEN</category>
+      <category id="527526745310">Combo</category>
+      <category id="580256996597">jewelry</category>
+      <category id="310012045583">candles</category>
+      <category id="481243561586">GIFT VOUCHER</category>
+      <category id="859214060475">MASK</category>
+      <category id="298454019369">BAG</category>
+      <category id="914241718292">All</category>
+      <category id="916694560890">главная комбо</category>
+      <category id="559241789572">для главной SHIRT 58.07 + DAILY PANTS 02.05</category>
+      <category id="574913720142">NETTLE WOMEN</category>
+      <category id="927072864171">главый экран</category>
+      <category id="441390634961">UNMERELOVE</category>
+      <category id="198841789381">Мужское неактивное</category>
+      <category id="991715111921">Каталог для RetailCRM</category>
+      <category id="258885823631">Женское неактивное</category>
+   </categories>
+  <offers>
+      <offer id="962299944791" group_id="859143968625">
+          <name>UNMERE SHORTS 44.04 - XS</name>
+          <vendor>SHORTS</vendor>
+          <url>https://unmere.com/shopmen/tproduct/131533993-859143968625-unmere-shorts-4404?editionuid=962299944791</url>
+          <model>44.04.02</model>
+          <price>35.00</price>
+          <oldprice>50.00</oldprice>
+          <currencyId>USD</currencyId>
+          <categoryId>547085788672</categoryId>
+          <picture>https://static.tildacdn.com/tild3733-3538-4436-a638-323834326538/DSC_7899.jpg</picture>
+          <store>false</store>
+          <pickup>false</pickup>
+          <description>
+<![CDATA[
+SHORTS FEATURE ELASTIC WAISTBAND WITH DRAWSTRING CLOSURE, A DROP CLOTCH, TWO SIDE POCKETS <br />- COLOR: DARK BROWN<br />- MATERIAL: 60% WOOL, 20% POLYESTER, 20% LAVSAN- POCKET LINING: 95%COTTON, 5%ELASTAN<br />- CORD: 100% COTTON<br />- MODEL IS 181 CM TALL, WEARING SIZE XS<br /><br />ШОРТЫ НА ЭЛАСТИЧНОМ ПОЯСЕ СО ШНУРОМ, С ОПУЩЕННЫМ ШАГОВЫМ ШВОМ И С БОКОВЫМИ КАРМАНАМИ В УХОДЯЩИХ НАЗАД ШВАХ.<br />- ЦВЕТ: ТЕМНО-КОРИЧНЕВЫЙ<br />- МАТЕРИАЛ: 60% ШЕРСТЬ, 20% ПОЛИЭСТЭР, 20% ЛАВСАН<br />- КАРМАНКА: 95% КОТТОН, 5%ЕЛАСТАН<br />- ШНУР: 100% ХЛОПОК<br />- РОСТ МОДЕЛИ 181, РАЗМЕР S<br />
+]]>
+          </description>
+          <param name="SIZE">XS</param>
+      </offer>
+      <offer id="641940588401" group_id="859143968625">
+          <name>UNMERE SHORTS 44.04 - M</name>
+          <vendor>SHORTS</vendor>
+          <url>https://unmere.com/shopmen/tproduct/131533993-859143968625-unmere-shorts-4404?editionuid=641940588401</url>
+          <model>44.04.06</model>
+          <price>35.00</price>
+          <oldprice>50.00</oldprice>
+          <currencyId>USD</currencyId>
+          <categoryId>547085788672</categoryId>
+          <picture>https://static.tildacdn.com/tild3733-3538-4436-a638-323834326538/DSC_7899.jpg</picture>
+          <store>false</store>
+          <pickup>false</pickup>
+          <description>
+<![CDATA[
+SHORTS FEATURE ELASTIC WAISTBAND WITH DRAWSTRING CLOSURE, A DROP CLOTCH, TWO SIDE POCKETS <br />- COLOR: DARK BROWN<br />- MATERIAL: 60% WOOL, 20% POLYESTER, 20% LAVSAN- POCKET LINING: 95%COTTON, 5%ELASTAN<br />- CORD: 100% COTTON<br />- MODEL IS 181 CM TALL, WEARING SIZE XS<br /><br />ШОРТЫ НА ЭЛАСТИЧНОМ ПОЯСЕ СО ШНУРОМ, С ОПУЩЕННЫМ ШАГОВЫМ ШВОМ И С БОКОВЫМИ КАРМАНАМИ В УХОДЯЩИХ НАЗАД ШВАХ.<br />- ЦВЕТ: ТЕМНО-КОРИЧНЕВЫЙ<br />- МАТЕРИАЛ: 60% ШЕРСТЬ, 20% ПОЛИЭСТЭР, 20% ЛАВСАН<br />- КАРМАНКА: 95% КОТТОН, 5%ЕЛАСТАН<br />- ШНУР: 100% ХЛОПОК<br />- РОСТ МОДЕЛИ 181, РАЗМЕР S<br />
+]]>
+          </description>
+          <param name="SIZE">M</param>
+      </offer>
+      <offer id="256960841381" group_id="859143968625">
+          <name>UNMERE SHORTS 44.04 - M</name>
+          <vendor>SHORTS</vendor>
+          <url>https://unmere.com/shopmen/tproduct/131533993-859143968625-unmere-shorts-4404?editionuid=256960841381</url>
+          <model>44.04.07</model>
+          <price>35.00</price>
+          <oldprice>50.00</oldprice>
+          <currencyId>USD</currencyId>
+          <categoryId>547085788672</categoryId>
+          <picture>https://static.tildacdn.com/tild3733-3538-4436-a638-323834326538/DSC_7899.jpg</picture>
+          <store>false</store>
+          <pickup>false</pickup>
+          <description>
+<![CDATA[
+SHORTS FEATURE ELASTIC WAISTBAND WITH DRAWSTRING CLOSURE, A DROP CLOTCH, TWO SIDE POCKETS <br />- COLOR: DARK BROWN<br />- MATERIAL: 60% WOOL, 20% POLYESTER, 20% LAVSAN- POCKET LINING: 95%COTTON, 5%ELASTAN<br />- CORD: 100% COTTON<br />- MODEL IS 181 CM TALL, WEARING SIZE XS<br /><br />ШОРТЫ НА ЭЛАСТИЧНОМ ПОЯСЕ СО ШНУРОМ, С ОПУЩЕННЫМ ШАГОВЫМ ШВОМ И С БОКОВЫМИ КАРМАНАМИ В УХОДЯЩИХ НАЗАД ШВАХ.<br />- ЦВЕТ: ТЕМНО-КОРИЧНЕВЫЙ<br />- МАТЕРИАЛ: 60% ШЕРСТЬ, 20% ПОЛИЭСТЭР, 20% ЛАВСАН<br />- КАРМАНКА: 95% КОТТОН, 5%ЕЛАСТАН<br />- ШНУР: 100% ХЛОПОК<br />- РОСТ МОДЕЛИ 181, РАЗМЕР S<br />
+]]>
+          </description>
+          <param name="SIZE">M</param>
+      </offer>
+   </offers>
+</shop></yml_catalog>
