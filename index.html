@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Інструкції зі збирання меблів</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Інструкції зі збирання</h1>
+    <p class="muted">Відскануйте QR-код на упаковці або оберіть набір нижче.</p>
+  </header>
+
+  <main class="container">
+    <ul id="kit-list" class="kit-list"></ul>
+  </main>
+
+  <script src="data/kits.js"></script>
+  <script>
+    const list = document.getElementById("kit-list");
+    window.KITS.forEach(kit => {
+      const li = document.createElement("li");
+      li.className = "card";
+      li.innerHTML = `
+        <a href="kit.html?kit=${encodeURIComponent(kit.id)}">
+          <strong>${kit.name}</strong>
+          <span class="muted">${kit.steps.length} кроків · ${kit.time}</span>
+        </a>`;
+      list.appendChild(li);
+    });
+  </script>
+</body>
+</html>
