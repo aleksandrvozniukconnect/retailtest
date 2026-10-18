@@ -9,25 +9,48 @@
 <body>
   <header class="top">
     <h1>Інструкції зі збирання</h1>
-    <p class="muted">Відскануйте QR-код на упаковці або оберіть набір нижче.</p>
+    <p class="muted">Відскануйте QR-код на упаковці або оберіть виріб нижче.</p>
   </header>
 
   <main class="container">
     <ul id="kit-list" class="kit-list"></ul>
+    <p id="list-error" class="error" hidden></p>
+
+    <div class="block">
+      <h2>Для конструктора</h2>
+      <p class="muted">Відкрийте власний файл моделі (JSON) без завантаження на сайт — перегляд лише на цьому пристрої.</p>
+      <label class="btn btn-ghost file-btn">Відкрити файл моделі
+        <input type="file" id="file" accept="application/json,.json" hidden>
+      </label>
+      <p><a href="qr.html">Створити QR-код для наліпки →</a></p>
+    </div>
   </main>
 
-  <script src="data/kits.js"></script>
   <script>
     const list = document.getElementById("kit-list");
-    window.KITS.forEach(kit => {
-      const li = document.createElement("li");
-      li.className = "card";
-      li.innerHTML = `
-        <a href="kit.html?kit=${encodeURIComponent(kit.id)}">
-          <strong>${kit.name}</strong>
-          <span class="muted">${kit.steps.length} кроків · ${kit.time}</span>
-        </a>`;
-      list.appendChild(li);
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+    fetch("data/models/index.json").then(r => r.json()).then(items => {
+      items.forEach(it => {
+        const li = document.createElement("li");
+        li.className = "card";
+        li.innerHTML = `<a href="model.html?id=${encodeURIComponent(it.id)}"><strong>${esc(it.name)}</strong><span class="muted">Відкрити інструкцію →</span></a>`;
+        list.appendChild(li);
+      });
+    }).catch(() => {
+      const e = document.getElementById("list-error");
+      e.hidden = false;
+      e.textContent = "Не вдалося завантажити список виробів.";
+    });
+
+    document.getElementById("file").addEventListener("change", e => {
+      const f = e.target.files[0];
+      if (!f) return;
+      f.text().then(t => {
+        JSON.parse(t); // перевірка, що це JSON
+        try { sessionStorage.setItem("localModel", t); } catch (err) { return alert("Файл завеликий для перегляду."); }
+        location.href = "model.html?local=1";
+      }).catch(() => alert("Це не коректний файл моделі (JSON)."));
     });
   </script>
 </body>

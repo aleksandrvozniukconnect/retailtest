@@ -91,3 +91,84 @@ a { color: var(--accent); }
 @media (max-width: 480px) {
   .drawing { height: 110px; }
 }
+
+/* ---------- Сторінка моделі ---------- */
+.btn {
+  appearance: none; border: 0; border-radius: 10px; padding: 12px 16px;
+  background: var(--accent); color: var(--card); font: inherit; font-weight: 700; cursor: pointer;
+}
+.btn:disabled { opacity: .4; cursor: default; }
+.btn-ghost { background: transparent; color: var(--fg); border: 1px solid var(--line); }
+.file-btn { display: inline-block; }
+
+.error { background: #fde8e6; color: #8a1c12; padding: 12px; border-radius: 10px; }
+
+.tabs { display: flex; gap: 6px; max-width: 720px; margin: 8px auto 0; padding: 0 16px; overflow-x: auto; }
+.tabs button {
+  flex: 1; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px;
+  background: var(--card); color: var(--fg); font: inherit; cursor: pointer; white-space: nowrap;
+}
+.tabs button.is-active { background: var(--accent); color: var(--card); border-color: var(--accent); }
+
+.tab { display: none; }
+.tab.is-active { display: block; }
+
+.viewer {
+  height: 52vh; min-height: 280px; border: 1px solid var(--line); border-radius: 12px;
+  background: var(--card); overflow: hidden; margin-bottom: 10px; touch-action: none;
+}
+.viewer canvas { display: block; width: 100%; height: 100%; }
+
+.step-panel { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-top: 10px; }
+.step-panel h2 { margin: 2px 0 6px; font-size: 20px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.chip { background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; font-size: 14px; }
+.hw-list { margin: 8px 0; padding-left: 20px; }
+.nav-row { display: flex; gap: 10px; margin-top: 12px; }
+.nav-row .btn:last-child { flex: 1; }
+.dots { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.dot {
+  width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line);
+  background: var(--card); color: var(--fg); font: inherit; cursor: pointer;
+}
+.dot.is-done { background: var(--accent); color: var(--card); border-color: var(--accent); }
+.dot.is-cur { outline: 2px solid var(--fg); outline-offset: 2px; }
+
+.controls-row { display: flex; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; }
+.controls-row input[type="range"] { width: 160px; vertical-align: middle; }
+
+.table-wrap { overflow-x: auto; }
+.parts th { font-size: 13px; color: var(--muted); white-space: nowrap; }
+.parts td { white-space: nowrap; }
+
+.drawing-svg { width: 100%; max-width: 420px; height: auto; display: block; margin: 8px auto; color: var(--fg); }
+.legend { text-align: center; }
+.part-sheet { break-inside: avoid; }
+
+.top .btn { margin-top: 10px; }
+
+label { display: block; font-weight: 600; margin: 10px 0 4px; }
+select, input[type="url"] {
+  width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--bg); color: var(--fg); font: inherit;
+}
+
+.label {
+  display: flex; gap: 16px; align-items: center; max-width: 420px; margin: 16px auto;
+  background: #fff; color: #111; border: 2px solid #111; border-radius: 12px; padding: 16px;
+}
+.qr { width: 140px; flex: none; }
+.qr svg { width: 100%; height: auto; display: block; }
+.label-text { display: grid; gap: 4px; }
+.label-text strong { font-size: 18px; }
+.label-text small { word-break: break-all; color: #555; font-size: 10px; }
+
+/* ---------- Друк / PDF ---------- */
+@media print {
+  .tabs, .top .btn, .viewer, .controls-row, .step-panel, .progress, .no-print, .back, .check { display: none !important; }
+  body { background: #fff; color: #000; }
+  .tab { display: none; }
+  body.print-all #tab-spec, body.print-all #tab-draw { display: block; }
+  .block, .step { border-color: #bbb; break-inside: avoid; }
+  .label { margin: 0 auto; }
+}

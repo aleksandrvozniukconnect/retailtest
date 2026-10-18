@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Збирання меблів</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="top">
+    <a href="index.html" class="back">← Усі вироби</a>
+    <h1 id="m-name">Завантаження…</h1>
+    <p class="muted" id="m-meta"></p>
+    <button id="btn-pdf" class="btn btn-ghost" type="button" hidden>Зберегти PDF</button>
+  </header>
+
+  <nav class="tabs" id="tabs" hidden>
+    <button data-tab="assembly" class="is-active" type="button">Збирання</button>
+    <button data-tab="view3d" type="button">3D</button>
+    <button data-tab="spec" type="button">Список</button>
+    <button data-tab="draw" type="button">Креслення</button>
+  </nav>
+
+  <main class="container" id="main">
+    <p id="m-error" class="error" hidden></p>
+
+    <section id="tab-assembly" class="tab is-active">
+      <div class="viewer" id="viewer-asm"></div>
+      <div class="progress"><div class="bar" id="asm-bar"></div></div>
+      <div class="step-panel">
+        <p class="muted" id="asm-where"></p>
+        <h2 id="asm-title"></h2>
+        <p id="asm-text"></p>
+        <div id="asm-parts" class="chips"></div>
+        <ul id="asm-hw" class="hw-list"></ul>
+        <div class="nav-row">
+          <button id="asm-prev" class="btn btn-ghost" type="button">← Назад</button>
+          <button id="asm-next" class="btn" type="button">Готово, далі →</button>
+        </div>
+        <div id="asm-dots" class="dots"></div>
+      </div>
+    </section>
+
+    <section id="tab-view3d" class="tab">
+      <div class="viewer" id="viewer-3d"></div>
+      <div class="controls-row">
+        <label>Розсунути деталі <input type="range" id="explode" min="0" max="100" value="0"></label>
+        <button id="btn-reset" class="btn btn-ghost" type="button">Скинути вигляд</button>
+      </div>
+      <div class="block" id="part-info"><p class="muted">Торкніться деталі, щоб побачити її розміри.</p></div>
+    </section>
+
+    <section id="tab-spec" class="tab"></section>
+    <section id="tab-draw" class="tab"></section>
+  </main>
+
+  <script src="vendor/three.min.js"></script>
+  <script src="vendor/OrbitControls.js"></script>
+  <script src="assets/viewer3d.js"></script>
+  <script src="assets/drawings.js"></script>
+  <script src="assets/model.js"></script>
+</body>
+</html>
