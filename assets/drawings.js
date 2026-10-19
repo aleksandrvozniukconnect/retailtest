@@ -43,12 +43,14 @@
     </svg>`;
   }
 
-  // Креслення деталі: прямокутник довжина × ширина, кромка, отвори
-  function partDrawing(p) {
-    const [L, Wd, T] = p.dims;
+  // Креслення деталі: прямокутник довжина × ширина, кромка, отвори.
+  // labels — підписи сторін у виробі, напр. { l1: "спереду", w1: "зверху" }
+  function partDrawing(p, labels) {
+    const [L, Wd] = p.dims;
     const box = 260;
     const k = box / Math.max(L, Wd);
-    const pad = 44;
+    const pad = 54;
+    const lb = labels || {};
     const w = L * k, h = Wd * k;
     const vw = w + pad * 2, vh = h + pad * 2;
     const edges = new Set(p.edge || []);
@@ -66,9 +68,18 @@
       ${line(pad, pad, pad, pad + h, edges.has("w1"))}
       ${line(pad + w, pad, pad + w, pad + h, edges.has("w2"))}
       ${holes}
-      <text x="${pad + w / 2}" y="${pad - 14}" text-anchor="middle" font-size="12" fill="currentColor">${L}</text>
-      <text x="${pad - 14}" y="${pad + h / 2}" text-anchor="middle" font-size="12" fill="currentColor" transform="rotate(-90 ${pad - 14} ${pad + h / 2})">${Wd}</text>
+      <text x="${pad + w / 2}" y="${pad - 28}" text-anchor="middle" font-size="12" fill="currentColor">${L}</text>
+      <text x="${pad - 32}" y="${pad + h / 2}" text-anchor="middle" font-size="12" fill="currentColor" transform="rotate(-90 ${pad - 32} ${pad + h / 2})">${Wd}</text>
+      ${side(lb.l1, pad + w / 2, pad - 9, 0)}
+      ${side(lb.l2, pad + w / 2, pad + h + 17, 0)}
+      ${side(lb.w1, pad - 10, pad + h / 2, -90)}
+      ${side(lb.w2, pad + w + 14, pad + h / 2, 90)}
     </svg>`;
+  }
+
+  function side(text, x, y, rot) {
+    if (!text) return "";
+    return `<text x="${x}" y="${y}" text-anchor="middle" font-size="11" font-style="italic" fill="#c2410c"${rot ? ` transform="rotate(${rot} ${x} ${y})"` : ""}>${esc(text)}</text>`;
   }
 
   window.Drawings = { frontView, partDrawing, EDGE_NAMES, isHorizontal };

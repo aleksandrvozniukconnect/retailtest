@@ -3,62 +3,91 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>QR-код для наліпки</title>
+  <title>QR-наліпки</title>
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
   <header class="top no-print">
     <a href="index.html" class="back">← Усі вироби</a>
-    <h1>QR-код для наліпки</h1>
-    <p class="muted">Оберіть виріб, надрукуйте наліпку й приклейте на упаковку. Зборщик скануватиме її телефоном.</p>
+    <h1>QR-наліпки</h1>
+    <p class="muted">Наліпка на упаковку відкриває інструкцію. Наліпка на деталь відкриває картку деталі: як вона стоїть, де кромка, з чим стикується.</p>
   </header>
 
   <main class="container">
     <div class="block no-print">
       <label for="sel">Виріб</label>
       <select id="sel"></select>
+      <label for="kind">Що друкувати</label>
+      <select id="kind">
+        <option value="pack">Наліпка на упаковку</option>
+        <option value="parts">Наліпки на всі деталі</option>
+      </select>
       <label for="base">Адреса сайту</label>
       <input id="base" type="url" placeholder="https://ваш-сайт.com/">
       <p class="muted">Адресу підставлено автоматично. Змініть, якщо сайт опубліковано за іншою адресою.</p>
-      <button id="print" class="btn" type="button">Друкувати наліпку</button>
+      <button id="print" class="btn" type="button">Друкувати</button>
     </div>
 
-    <div class="label" id="label">
-      <div id="qr" class="qr"></div>
-      <div class="label-text">
-        <strong id="l-name"></strong>
-        <span>Скануйте для інструкції зі збирання</span>
-        <small id="l-url"></small>
-      </div>
-    </div>
+    <div id="out"></div>
   </main>
 
   <script src="vendor/qrcode.js"></script>
   <script>
     const sel = document.getElementById("sel");
+    const kind = document.getElementById("kind");
     const base = document.getElementById("base");
-    const dir = location.href.replace(/[^/]*$/, "").replace(/\?.*$/, "");
-    base.value = dir;
+    const out = document.getElementById("out");
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    base.value = location.href.replace(/[?#].*$/, "").replace(/[^/]*$/, "");
     let items = [];
+    const models = {};
+
+    function qrSvg(url) {
+      const qr = qrcode(0, "M");
+      qr.addData(url);
+      qr.make();
+      return qr.createSvgTag({ cellSize: 4, margin: 1, scalable: true });
+    }
+
+    function root() { return base.value.endsWith("/") ? base.value : base.value + "/"; }
+
+    function loadModel(id) {
+      if (models[id]) return Promise.resolve(models[id]);
+      return fetch("data/models/" + id + ".json").then(r => r.json()).then(m => (models[id] = m));
+    }
 
     function render() {
       const it = items.find(i => i.id === sel.value);
       if (!it) return;
-      const url = (base.value.endsWith("/") ? base.value : base.value + "/") + "model.html?id=" + encodeURIComponent(it.id);
-      const qr = qrcode(0, "M");
-      qr.addData(url);
-      qr.make();
-      document.getElementById("qr").innerHTML = qr.createSvgTag({ cellSize: 6, margin: 2, scalable: true });
-      document.getElementById("l-name").textContent = it.name;
-      document.getElementById("l-url").textContent = url;
+      const url = root() + "model.html?id=" + encodeURIComponent(it.id);
+      if (kind.value === "pack") {
+        out.innerHTML = `<div class="label">
+          <div class="qr">${qrSvg(url)}</div>
+          <div class="label-text"><strong>${esc(it.name)}</strong><span>Скануйте для інструкції зі збирання</span><small>${esc(url)}</small></div>
+        </div>`;
+        return;
+      }
+      loadModel(it.id).then(m => {
+        const parts = m.blocks.flatMap(b => b.parts.map(p => ({ p, b })));
+        out.innerHTML = `<p class="muted no-print">${parts.length} наліпок. Розріжте по пунктиру й наклейте на деталі.</p>
+          <div class="sheet">${parts.map(({ p, b }) => {
+            const dims = p.dims || p.size.slice().sort((x, y) => y - x);
+            return `<div class="tag"><div class="qr">${qrSvg(url + "&part=" + p.pos)}</div>
+              <div><b>${p.pos}</b><span>${esc(p.name)}<br>${dims.join("×")}<br>${esc(b.name)}</span></div></div>`;
+          }).join("")}</div>`;
+      });
     }
 
     fetch("data/models/index.json").then(r => r.json()).then(list => {
       items = list;
       list.forEach(it => sel.add(new Option(it.name, it.id)));
+      const want = new URLSearchParams(location.search);
+      if (want.get("id")) sel.value = want.get("id");
+      if (want.get("kind")) kind.value = want.get("kind");
       render();
     });
     sel.addEventListener("change", render);
+    kind.addEventListener("change", render);
     base.addEventListener("input", render);
     document.getElementById("print").addEventListener("click", () => window.print());
   </script>

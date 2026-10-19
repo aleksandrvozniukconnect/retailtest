@@ -17,6 +17,15 @@
     <p id="list-error" class="error" hidden></p>
 
     <div class="block">
+      <h2>Спробувати</h2>
+      <ul class="hw-list">
+        <li><a href="model.html?id=cabinet-01&part=1">Ніби відсканували QR на деталі №1 (бік шафи)</a></li>
+        <li><a href="model.html?id=cabinet-01&part=7">Ніби відсканували QR на дверях</a></li>
+        <li><a href="qr.html?id=cabinet-01&kind=parts">Аркуш QR-наліпок на всі деталі шафи</a></li>
+      </ul>
+    </div>
+
+    <div class="block">
       <h2>Для конструктора</h2>
       <p class="muted">Відкрийте власний файл моделі (JSON) без завантаження на сайт — перегляд лише на цьому пристрої.</p>
       <label class="btn btn-ghost file-btn">Відкрити файл моделі
@@ -52,6 +61,11 @@
         location.href = "model.html?local=1";
       }).catch(() => alert("Це не коректний файл моделі (JSON)."));
     });
+  </script>
+  <script>
+    if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+      navigator.serviceWorker.register("sw.js").catch(() => {});
+    }
   </script>
 </body>
 </html>
