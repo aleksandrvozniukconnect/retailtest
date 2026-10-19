@@ -14,7 +14,7 @@
     if (params.get("local")) {
       try {
         return Promise.resolve(JSON.parse(sessionStorage.getItem("localModel")));
-      } catch (e) {
+      } catch {
         return Promise.reject(new Error("Не вдалося прочитати файл моделі."));
       }
     }
@@ -118,7 +118,7 @@
     try {
       if (value === undefined) return JSON.parse(localStorage.getItem(key));
       localStorage.setItem(key, JSON.stringify(value));
-    } catch (e) { /* сховище недоступне — працюємо без нього */ }
+    } catch { /* сховище недоступне — працюємо без нього */ }
     return null;
   }
 
